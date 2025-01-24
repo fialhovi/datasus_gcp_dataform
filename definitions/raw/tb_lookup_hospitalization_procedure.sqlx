@@ -1,0 +1,7 @@
+config {
+  type: "declaration",
+  database: "datasus-prod",
+  schema: "lookup",
+  name: "tb_lookup_hospitalization_procedure",
+  description: ""
+}

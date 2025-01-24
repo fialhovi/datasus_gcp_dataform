@@ -1,0 +1,7 @@
+config {
+  type: "declaration",
+  database: "datasus-prod",
+  schema: "raw",
+  name: "tb_sih_rd",
+  description: "Raw data table containing hospital admission information (SIH), sourced from the SUS Hospital Information System, used for initial data processing and analysis"
+}
