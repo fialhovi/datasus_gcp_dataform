@@ -5,25 +5,25 @@ config {
     description: "A trusted dataset derived from the raw.tb_sih_rd table, containing clean and structured hospital admission data from the SUS Hospital Information System (SIH)",
     tags: ["sih_rd"],
     columns: {
-        municipality_code: "Code of the municipality associated with the data record",
-        date: "The specific date of the hospital admission or procedure",
-        year: "The year when the event occurred",
-        month: "The month when the event occurred",
-        specialty_bed: "AIH specialty, according to the Specialty Table",
-        aih: "Authorization for Hospital Admission (AIH) identifier",
-        type_aih: "Type of the AIH",
-        patient_municipality: "The municipality where the patient resides",
-        gender: "The gender of the patient",
-        type_uti: "Type of intensive care unit (ICU) the patient used",
-        days_hospitalized: "The total number of days the patient was hospitalized",
-        procedure: "The medical procedure performed during hospitalization",
-        total_value: "The total cost associated with the hospitalization",
-        death: "Indicates if the patient passed away during the hospitalization",
-        risk_pregnant: "Specifies if the patient was at risk during pregnancy",
-        race_color: "The race or color category of the patient",
-        birth_date: "The birth date of the patient",
-        age: "The age of the patient at the time of the event",
-        date_loading: "Timestamp indicating when the data was loaded into the database"
+        municipality_code: docs.municipality_code,
+        date: docs.date,
+        year: docs.year,
+        month: docs.month,
+        specialty_bed: docs.specialty_bed,
+        aih: docs.aih,
+        type_aih: docs.type_aih,
+        patient_municipality: docs.patient_municipality,
+        gender: docs.gender,
+        type_uti: docs.type_uti,
+        days_hospitalized: docs.days_hospitalized,
+        procedure: docs.procedure,
+        total_value: docs.total_value,
+        death: docs.death,
+        risk_pregnant: docs.risk_pregnant,
+        race_color: docs.race_color,
+        birth_date: docs.birth_date,
+        age: docs.age,
+        date_loading: docs.date_loading
     },
     assertions: {
         uniqueKey: ["aih", "date"],
@@ -35,7 +35,8 @@ config {
     },
     bigquery: {
         partitionBy: "date",
-        updatePartitionFilter: "date >= DATE_SUB(CURRENT_DATE(), INTERVAL 3 MONTH)"
+        updatePartitionFilter: "date >= DATE_SUB(CURRENT_DATE(), INTERVAL 3 MONTH)",
+        clusterBy: ["procedure", "municipality_code"]
   },
 }
 
